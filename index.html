@@ -48,6 +48,13 @@ h1{font-size:clamp(40px,7vw,64px);line-height:1.05;letter-spacing:-.03em;margin:
 .btn.primary{background:var(--text);color:var(--bg);border-color:var(--text)}
 .btn.primary:hover{opacity:.88}
 
+.hero{display:flex;align-items:center;justify-content:space-between;gap:48px}
+.photo{width:220px;height:220px;border-radius:50%;object-fit:cover;border:1px solid var(--line);flex-shrink:0}
+@media (max-width:720px){
+  .hero{flex-direction:column-reverse;align-items:flex-start;gap:28px}
+  .photo{width:120px;height:120px}
+}
+
 /* Sections */
 section{padding:72px 0;border-bottom:1px solid var(--line)}
 h2{font-size:28px;letter-spacing:-.02em;margin-bottom:8px}
@@ -109,15 +116,18 @@ footer h2{font-size:clamp(28px,4vw,40px)}
 <body>
 
 <header>
-  <div class="wrap">
-    <div class="eyebrow mono">Dados · IA · Software</div>
-    <h1>Henrique</h1>
-    <p class="lead">Estudante de Tecnologia em Banco de Dados. Construo sistemas e automações que resolvem problemas reais do dia a dia: do caixa de uma casa de shows ao cadastro de produtos de uma marca de moda.</p>
-    <div class="actions">
-      <a class="btn primary" href="#projetos">Ver projetos</a>
-      <a class="btn" href="https://www.linkedin.com/in/henriquepietro/" target="_blank" rel="noopener">LinkedIn ↗</a>
-      <a class="btn" href="https://github.com/Henrique7915" target="_blank" rel="noopener">GitHub ↗</a>
+  <div class="wrap hero">
+    <div class="hero-text">
+      <div class="eyebrow mono">Dados · IA · Software</div>
+      <h1>Henrique</h1>
+      <p class="lead">Estudante de Tecnologia em Banco de Dados. Construo sistemas e automações que resolvem problemas reais do dia a dia: do caixa de uma casa de shows ao cadastro de produtos de uma marca de moda.</p>
+      <div class="actions">
+        <a class="btn primary" href="#projetos">Ver projetos</a>
+        <a class="btn" href="https://www.linkedin.com/in/henriquepietro/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a class="btn" href="https://github.com/Henrique7915" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
     </div>
+    <img class="photo" src="foto.png" alt="Foto de Henrique" width="400" height="400">
   </div>
 </header>
 
