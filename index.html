@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Henrique — Dados, IA e Software</title>
+<meta name="description" content="Portfólio de projetos de dados, automação e software de Henrique, estudante de Tecnologia em Banco de Dados.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fafaf9; --surface:#ffffff; --text:#18181b; --muted:#71717a; --line:#e4e4e7;
+  --accent:#2563eb; --accent-soft:#eff6ff;
+  --tag-live:#15803d; --tag-live-bg:#f0fdf4;
+  --tag-public:#2563eb; --tag-public-bg:#eff6ff;
+  --tag-internal:#a16207; --tag-internal-bg:#fefce8;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0c0c0e; --surface:#151518; --text:#f4f4f5; --muted:#a1a1aa; --line:#27272a;
+    --accent:#60a5fa; --accent-soft:#172033;
+    --tag-live:#4ade80; --tag-live-bg:#0f2417;
+    --tag-public:#60a5fa; --tag-public-bg:#172033;
+    --tag-internal:#facc15; --tag-internal-bg:#2a2410;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0c0c0e; --surface:#151518; --text:#f4f4f5; --muted:#a1a1aa; --line:#27272a;
+  --accent:#60a5fa; --accent-soft:#172033;
+  --tag-live:#4ade80; --tag-live-bg:#0f2417;
+  --tag-public:#60a5fa; --tag-public-bg:#172033;
+  --tag-internal:#facc15; --tag-internal-bg:#2a2410;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+.mono{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+
+/* Hero */
+header{padding:96px 0 72px;border-bottom:1px solid var(--line)}
+.eyebrow{color:var(--muted)}
+h1{font-size:clamp(40px,7vw,64px);line-height:1.05;letter-spacing:-.03em;margin:16px 0 20px;font-weight:700}
+.lead{font-size:clamp(17px,2.2vw,20px);color:var(--muted);max-width:620px}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:8px;font-weight:500;font-size:15px;text-decoration:none;border:1px solid var(--line);background:var(--surface);transition:border-color .15s}
+.btn:hover{border-color:var(--text)}
+.btn.primary{background:var(--text);color:var(--bg);border-color:var(--text)}
+.btn.primary:hover{opacity:.88}
+
+/* Sections */
+section{padding:72px 0;border-bottom:1px solid var(--line)}
+h2{font-size:28px;letter-spacing:-.02em;margin-bottom:8px}
+.sub{color:var(--muted);margin-bottom:32px}
+
+/* Filters */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
+.filter{font:inherit;font-size:14px;padding:6px 14px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer}
+.filter[aria-pressed="true"]{background:var(--text);color:var(--bg);border-color:var(--text)}
+
+/* Cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:12px;transition:border-color .15s,transform .15s}
+.card:hover{border-color:var(--muted);transform:translateY(-2px)}
+.tags{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.tag{padding:3px 8px;border-radius:4px;font-size:11px}
+.tag.live{color:var(--tag-live);background:var(--tag-live-bg)}
+.tag.public{color:var(--tag-public);background:var(--tag-public-bg)}
+.tag.internal{color:var(--tag-internal);background:var(--tag-internal-bg)}
+.cat{color:var(--muted);font-size:11px}
+.card h3{font-size:20px;letter-spacing:-.01em}
+.card p{color:var(--muted);font-size:15px;flex:1}
+.stack{display:flex;gap:6px;flex-wrap:wrap}
+.stack span{font-size:12px;padding:2px 8px;border:1px solid var(--line);border-radius:4px;color:var(--muted)}
+.card button.more{align-self:flex-start;font:inherit;font-weight:500;font-size:14px;background:none;border:none;color:var(--accent);cursor:pointer;padding:0}
+.card button.more:hover{text-decoration:underline}
+
+/* Dialog */
+dialog{border:none;border-radius:14px;max-width:680px;width:calc(100% - 32px);padding:0;background:var(--surface);color:var(--text);margin:auto}
+dialog::backdrop{background:rgba(0,0,0,.55)}
+.dlg{padding:32px;max-height:85vh;overflow:auto}
+.dlg h3{font-size:26px;letter-spacing:-.02em;margin:12px 0 4px}
+.dlg .one{color:var(--muted);margin-bottom:24px}
+.dlg h4{font-size:12px;margin:22px 0 8px;color:var(--muted)}
+.dlg ul{padding-left:18px}
+.dlg li{margin:4px 0}
+.dlg .close{position:sticky;top:0;float:right;font:inherit;font-size:22px;background:none;border:none;color:var(--muted);cursor:pointer;line-height:1}
+.dlg .links{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+
+/* About / skills */
+.about{display:grid;grid-template-columns:1.4fr 1fr;gap:48px}
+.about p{color:var(--muted);margin-bottom:16px;font-size:17px}
+.skills h4{margin-bottom:10px;color:var(--muted)}
+.skills .stack{margin-bottom:22px}
+.skills .stack span{font-size:13px;color:var(--text)}
+
+footer{padding:72px 0 96px}
+footer h2{font-size:clamp(28px,4vw,40px)}
+.small{color:var(--muted);font-size:13px;margin-top:48px}
+
+@media (max-width:720px){
+  header{padding:64px 0 48px}
+  section{padding:56px 0}
+  .about{grid-template-columns:1fr;gap:24px}
+  .dlg{padding:24px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow mono">Dados · IA · Software</div>
+    <h1>Henrique</h1>
+    <p class="lead">Estudante de Tecnologia em Banco de Dados. Construo sistemas e automações que resolvem problemas reais do dia a dia: do caixa de uma casa de shows ao cadastro de produtos de uma marca de moda.</p>
+    <div class="actions">
+      <a class="btn primary" href="#projetos">Ver projetos</a>
+      <a class="btn" href="https://www.linkedin.com/in/henriquepietro/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a class="btn" href="https://github.com/Henrique7915" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+  </div>
+</header>
+
+<main>
+<section id="projetos">
+  <div class="wrap">
+    <h2>Projetos</h2>
+    <p class="sub">Cada projeto mostra onde ele está: em uso, público ou como ferramenta interna.</p>
+    <div class="filters" role="group" aria-label="Filtrar projetos">
+      <button class="filter" aria-pressed="true" data-f="all">Todos</button>
+      <button class="filter" aria-pressed="false" data-f="dados">Dados</button>
+      <button class="filter" aria-pressed="false" data-f="ia">IA</button>
+      <button class="filter" aria-pressed="false" data-f="software">Software</button>
+      <button class="filter" aria-pressed="false" data-f="automacao">Automação</button>
+    </div>
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
+
+<section id="sobre">
+  <div class="wrap about">
+    <div>
+      <h2>Sobre</h2>
+      <p>Trabalho no administrativo de uma marca de moda, onde integro dados do ERP Linx com planilhas e bancos de dados para tirar processos do manual.</p>
+      <p>Uso ferramentas de IA como parte do processo: defino o problema, construo a solução com apoio de IA e testo com quem vai usar antes de considerar pronto.</p>
+      <p>Hoje curso Tecnologia em Banco de Dados e busco crescer nas áreas de dados e inteligência artificial.</p>
+    </div>
+    <div class="skills">
+      <h4 class="mono">Dados</h4>
+      <div class="stack"><span>SQL</span><span>PostgreSQL</span><span>Supabase</span><span>Excel</span><span>Google Sheets</span></div>
+      <h4 class="mono">Software</h4>
+      <div class="stack"><span>TypeScript</span><span>Next.js</span><span>React</span><span>Kotlin</span><span>Vercel</span></div>
+      <h4 class="mono">IA</h4>
+      <div class="stack"><span>Claude</span><span>Engenharia de prompt</span><span>IA generativa</span></div>
+      <h4 class="mono">Negócio</h4>
+      <div class="stack"><span>ERP Linx</span><span>Rotinas administrativas</span></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="eyebrow mono">Contato</div>
+    <h2 style="margin:12px 0 24px">Vamos conversar?</h2>
+    <div class="actions" style="margin-top:0">
+      <a class="btn primary" href="https://www.linkedin.com/in/henriquepietro/" target="_blank" rel="noopener">Falar pelo LinkedIn ↗</a>
+      <a class="btn" href="https://github.com/Henrique7915" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+    <p class="small">Projetos internos são apresentados sem dados reais de clientes ou empresas.</p>
+  </div>
+</footer>
+
+<dialog id="dlg"><div class="dlg" id="dlgBody"></div></dialog>
+
+<script>
+const T = {live:["Em uso real","live"], public:["Público","public"], demo:["Demo pública","public"], internal:["Ferramenta interna","internal"]};
+const P = [
+  {id:"rh", status:"demo", cat:"Dados / RH", f:["dados","software"], name:"Sistema de RH e DP",
+   one:"Gestão de pessoas com folha, recrutamento, auditoria e um painel de análise de dados.",
+   stack:["Next.js","TypeScript","PostgreSQL","Supabase"],
+   problem:"Rotinas de departamento pessoal espalhadas em planilhas: folha, bônus, notas fiscais e recrutamento sem histórico nem controle de acesso.",
+   built:["Cadastro de colaboradores, folha de pagamento, bônus e notas fiscais","Recrutamento e seleção com etapas de candidatos","Permissões por perfil e trilha de auditoria das ações","Painel de análise: headcount, custo da folha, turnover e funil de recrutamento","Banco modelado em PostgreSQL com migrações versionadas"],
+   learned:"Modelagem de banco relacional, segurança por perfil (RLS) e como transformar dados operacionais em indicadores.",
+   note:"A demo usa uma empresa fictícia e dados inventados.",
+   links:[["Abrir demo ↗","https://sistema-dp-three.vercel.app"]]},
+  {id:"pdv", status:"live", cat:"Software / Varejo", f:["software"], name:"PDV Hudson",
+   one:"App de ponto de venda para maquininha Cielo Smart, usado nos caixas de uma casa de shows.",
+   stack:["Kotlin","Android","API Cielo","GitHub Actions"],
+   problem:"Caixas móveis precisavam vender rápido, dividir pagamentos e fechar o turno sem divergência entre a maquininha e o dinheiro na gaveta.",
+   built:["Abertura de caixa por operador com PIN","Pagamento dividido entre Pix, débito, crédito e dinheiro","Fichas impressas por item com código de segurança contra falsificação","Sangria, cortesia e desconto com senha do gerente","Fechamento com conferência às cegas: maquininha × app","Testes automatizados do núcleo e APK gerado a cada envio"],
+   learned:"Integração com hardware de pagamento, regras de negócio de caixa e testes automatizados.",
+   note:"Código privado; roda apenas no terminal Cielo, por isso não há demo online.",
+   links:[]},
+  {id:"ledgera", status:"public", cat:"IA / Finanças", f:["ia","software"], name:"Ledgera",
+   one:"Organização financeira com IA para casais: lê faturas em PDF e monta um orçamento compartilhado.",
+   stack:["React","Vite","Tailwind","Claude API","Cloudflare"],
+   problem:"Faturas de cartão em PDF são difíceis de consolidar; casais não têm uma visão clara e compartilhada dos gastos.",
+   built:["A IA lê as faturas, categoriza cada compra e responde perguntas sobre os gastos","Orçamento doméstico compartilhado","Landing page com domínio próprio e páginas legais","Status honesto de cada recurso: funcionando, em desenvolvimento ou planejado"],
+   learned:"Extração de dados não estruturados com IA, publicação com domínio próprio e comunicação de produto.",
+   links:[["Abrir site ↗","https://ledgera.win"]]},
+  {id:"ficha", status:"internal", cat:"Dados / Automação", f:["dados","automacao"], name:"Ficha técnica automática",
+   one:"Preenche fichas técnicas de produtos cruzando a planilha de preços com o banco do ERP Linx.",
+   stack:["Excel","SQL","ERP Linx","Claude"],
+   problem:"Cada lançamento exigia copiar à mão preço, cores, tamanhos, tecidos e composição para a ficha técnica, com risco de erro de digitação.",
+   built:["Leitura da planilha de preços do mês","Consulta ao banco do ERP para tecidos e composição","Preenchimento automático da ficha no modelo da empresa"],
+   learned:"Consulta a bancos de ERP, cruzamento de fontes de dados e automação de processos administrativos.",
+   note:"Ferramenta interna; apresentada sem dados da empresa.",
+   links:[]},
+  {id:"romaneio", status:"internal", cat:"Dados / Logística", f:["dados","automacao"], name:"Controle de romaneios",
+   one:"Acompanhamento de remessas de envio e recebimento em planilhas estruturadas.",
+   stack:["Excel","Google Sheets"],
+   problem:"Remessas controladas de forma solta, sem visão rápida do que foi enviado e do que está pendente.",
+   built:["Registro padronizado de romaneios","Visão de pendências e conferência de itens"],
+   learned:"Estruturação de dados operacionais para consulta rápida.",
+   note:"Ferramenta interna; apresentada sem dados da empresa.",
+   links:[]},
+  {id:"conteudo", status:"internal", cat:"IA / Conteúdo", f:["ia","automacao"], name:"Fluxo de conteúdo com IA",
+   one:"Roteiros, prompts de vídeo e análise de desempenho de posts para uma marca de moda.",
+   stack:["Claude","Google Flow","Engenharia de prompt"],
+   problem:"Produzir conteúdo frequente para redes sociais com equipe pequena.",
+   built:["Instruções reutilizáveis para gerar roteiros e legendas na voz da marca","Prompts padronizados para vídeos gerados por IA","Leitura de métricas para decidir o próximo conteúdo"],
+   learned:"Engenharia de prompt e uso de IA generativa num fluxo de trabalho real.",
+   links:[]}
+];
+const grid=document.getElementById("grid"), dlg=document.getElementById("dlg"), body=document.getElementById("dlgBody");
+const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function render(f){
+  grid.innerHTML=P.filter(p=>f==="all"||p.f.includes(f)).map(p=>`
+  <article class="card">
+    <div class="tags"><span class="tag mono ${T[p.status][1]}">${T[p.status][0]}</span><span class="cat mono">${p.cat}</span></div>
+    <h3>${esc(p.name)}</h3><p>${esc(p.one)}</p>
+    <div class="stack">${p.stack.map(s=>`<span>${s}</span>`).join("")}</div>
+    <button class="more" data-id="${p.id}">Ler case →</button>
+  </article>`).join("");
+}
+function open(id){
+  const p=P.find(x=>x.id===id);
+  body.innerHTML=`<button class="close" aria-label="Fechar">×</button>
+  <div class="tags"><span class="tag mono ${T[p.status][1]}">${T[p.status][0]}</span><span class="cat mono">${p.cat}</span></div>
+  <h3>${esc(p.name)}</h3><p class="one">${esc(p.one)}</p>
+  <h4 class="mono">Problema</h4><p>${esc(p.problem)}</p>
+  <h4 class="mono">O que construí</h4><ul>${p.built.map(b=>`<li>${esc(b)}</li>`).join("")}</ul>
+  <h4 class="mono">O que aprendi</h4><p>${esc(p.learned)}</p>
+  <h4 class="mono">Tecnologias</h4><div class="stack">${p.stack.map(s=>`<span>${s}</span>`).join("")}</div>
+  ${p.note?`<p class="small" style="margin-top:20px">${esc(p.note)}</p>`:""}
+  ${p.links.length?`<div class="links">${p.links.map(([t,u])=>`<a class="btn primary" href="${u}" target="_blank" rel="noopener">${t}</a>`).join("")}</div>`:""}`;
+  dlg.showModal();
+  body.querySelector(".close").onclick=()=>dlg.close();
+}
+grid.addEventListener("click",e=>{const b=e.target.closest(".more"); if(b) open(b.dataset.id);});
+dlg.addEventListener("click",e=>{if(e.target===dlg) dlg.close();});
+document.querySelectorAll(".filter").forEach(b=>b.onclick=()=>{
+  document.querySelectorAll(".filter").forEach(x=>x.setAttribute("aria-pressed",x===b));
+  render(b.dataset.f);
+});
+render("all");
+</script>
+</body>
+</html>
